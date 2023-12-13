@@ -6,11 +6,14 @@ import com.condingrecipe.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
+
     // 생성자 주입
     private final MemberRepository memberRepository;
 
@@ -42,5 +45,16 @@ public class MemberService {
             // 조회 결과가 없다면
             return null;
         }
+    }
+
+    public List<MemberDTO> findAll() {
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+
+        // Entity 가 여러 개 담긴 객체를 DTO 로 변환
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        for (MemberEntity memberEntity : memberEntityList) {
+            memberDTOList.add(MemberDTO.toMemberDTO(memberEntity));
+        }
+        return memberDTOList;
     }
 }
