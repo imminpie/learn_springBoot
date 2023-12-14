@@ -69,4 +69,19 @@ public class MemberService {
         }
     }
 
+    public MemberDTO updateForm(String myEmail) {
+        Optional<MemberEntity> byMemberEmail = memberRepository.findByMemberEmail(myEmail);
+        if (byMemberEmail.isPresent()) {
+            return MemberDTO.toMemberDTO(byMemberEmail.get());
+        } else {
+            return null;
+        }
+    }
+
+    public void update(MemberDTO memberDTO) {
+        // JpaRepository 의 save() 메소드는 id 가 없다면 insert 를 실행하고, 없으면 update 를 실행한다.
+        // DTO → Entity 객체로 변환
+        MemberEntity memberEntity = MemberEntity.toUpdateMemberEntity(memberDTO);
+        memberRepository.save(memberEntity);
+    }
 }
