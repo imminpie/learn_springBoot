@@ -11,23 +11,23 @@
         <td th:text="${board.id}"></td>
     </tr>
     <tr>
-        <th>title</th>
+        <th>제목</th>
         <td th:text="${board.boardTitle}"></td>
     </tr>
     <tr>
-        <th>writer</th>
+        <th>작성자</th>
         <td th:text="${board.boardWriter}"></td>
     </tr>
     <tr>
-        <th>date</th>
+        <th>날짜</th>
         <td th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
     </tr>
     <tr>
-        <th>hits</th>
+        <th>조회수</th>
         <td th:text="${board.boardHits}"></td>
     </tr>
     <tr>
-        <th>contents</th>
+        <th>내용</th>
         <td th:text="${board.boardContents}"></td>
     </tr>
 </table>
