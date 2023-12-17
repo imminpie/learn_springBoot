@@ -30,6 +30,10 @@
         <th>내용</th>
         <td th:text="${board.boardContents}"></td>
     </tr>
+    <tr th:if="${board.fileAttached == 1}">
+        <th>이미지</th>
+        <td><img th:src="@{|/upload/${board.storedFileName}|}" alt="file"></td>
+    </tr>
 </table>
 <button onclick="listReq()">목록</button>
 <button onclick="updateReq()">수정</button>
